@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 
@@ -12,11 +13,13 @@ class SyncR:
 	def login_to_gh(self, user, passs):
 		github3.login(username=user, password=passs)
 
-	def checkout_current_main(self,):
+	def fetch_current_main(self):
 		pass
 
 	def check_for_local_changes(self,):
-		pass
+		self.fetch_current_main()
+
+		self.diff_local_with_staging_are()
 
 	def create_branch(self,):
 		pass
@@ -46,7 +49,8 @@ if __name__== "__main__":
 		syncr.commit()
 		syncr.push_to_remote()
 		syncr.create_pr()
+		logging.log("Some useful log here")
 	else:
-		pass # do something else mayybe log to syslog
+		logging.info()
 
 
